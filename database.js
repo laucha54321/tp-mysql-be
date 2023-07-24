@@ -1,5 +1,6 @@
 import mysql from 'mysql2';
 import dotenv from 'dotenv';
+import bcrypt from 'bcrypt';
 
 dotenv.config();
 
@@ -25,7 +26,7 @@ export async function getPersona(id){
 export async function createPersona(param){
     const result = await pool.query(`
         INSERT INTO personas(nombre, apellido, contrasena, email, telefono, fecha_nacimiento)
-        VALUES (?,?,?,?,?,?)`,[param.nombre, param.apellido, param.contrasena, param.email, param.telefono, param.fecha_nacimiento]
+        VALUES (?,?,?,?,?,?)`,[param.nombre, param.apellido, await bcrypt.hash(param.contrasena,10), param.email, param.telefono, param.fecha_nacimiento]
     )
     return result
 };
@@ -47,6 +48,16 @@ export async function getPersonas(){
 //         email:'cilianmuyrphy@yahoo.com',
 //         telefono:'23414234',
 //         fecha_nacimiento:'1976-05-25'
+//     }
+// ),
+// await createPersona(
+//     {
+//         nombre:'Laureano',
+//         apellido:'Oliva',
+//         contrasena:'sajkdlf',
+//         email:'laureano@gmail.com',
+//         telefono:'23414234',
+//         fecha_nacimiento:'2001-07-25'
 //     }
 // ));
 
