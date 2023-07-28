@@ -1,23 +1,16 @@
-import { getPersona, getPersonas, createPersona, getCursos, getCurso, createCurso, getPasswordHash } from "./database.js";
+import {    getPersona,
+            getPersonas,
+            createPersona,
+            getCursos,
+            getCurso,
+            createCurso
+} from "./database.js";
+
 import express from 'express';
-import bcrypt from 'bcrypt';
 
-const app = express()
-app.use(express.json())
+const app = express();
+app.use(express.json());
 
-// #region LOGIN
-app.get("/login/:id", async(req,res)=>{
-    res.send(await getPasswordHash(req.params.id))
-});
-
-app.post("/login",async(req,res)=>{
-    const { id, contrasena} = req.body;
-    const validPass = await bcrypt.compare(contrasena, await getPasswordHash(id));
-    console.log(validPass);
-    res.send("logged in")
-});
-
-// #endregion
 
 // #region PERSONAS 
 app.get("/personas",async (req,res)=>{

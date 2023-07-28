@@ -96,14 +96,14 @@ export async function createCurso(param){
 //Como Crear un persona
 //=======================================================
 // console.log(await createPersona(
-//     {
-//         nombre:'Cillian',
-//         apellido:'Murphy',
-//         contrasena:'122312312',
-//         email:'cilianmuyrphy@yahoo.com',
-//         telefono:'23414234',
-//         fecha_nacimiento:'1976-05-25'
-//     }
+    // {
+    //     "nombre":"Cillian",
+    //     "apellido":"Murphy",
+    //     "contrasena":"122312312",
+    //     "email":"cilianmuyrphy@yahoo.com",
+    //     "telefono":"23414234",
+    //     "fecha_nacimiento":"1976-05-25"
+    // }
 // ),
 // await createPersona(
 //     {
