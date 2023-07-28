@@ -6,8 +6,20 @@ La idea es tener dos programas distintos en distintos puertos uno que se encargu
 
 El archivo de app.js seria el encargado de las requests y el de authentication.js el encargado de hacer las validaciones de los usuarios.
 
-Los usuarios se almacenan en la base de datos en laureanoliva.com:3306. Se almacenan usando bcrypt, con un nivel
+Los usuarios se almacenan en la base de datos en laureanoliva.com:3306. Se almacenan usando bcrypt, se hashean en total 11 veces.
 
 
+````mermaid
+flowchart LR;
+    subgraph Back End
+    id1[(laureanoliva:3306)] --- app.js;
+    id1[(laureanoliva:3306)] --- authentication.js;
+    end
+    subgraph Front End
+    AngularApp --- app.js
+    AngularApp --- authentication.js;
+    end
+
+     
 
 
