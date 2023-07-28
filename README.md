@@ -1,4 +1,12 @@
+## Cosas Utiles
+[TRELLO](https://trello.com/b/RQfTdn2D/tpdesarollodesoftware)
+
+[FRONT END REPO](https://github.com/laucha54321/pagina-Universitaria-Front)
+
+[BACK END REPO](https://github.com/laucha54321/tp-mysql-be/settings)
+
 # TP Desarollo BackEnd
+
 Esta es una api que interactua con una base de datos SQL en laureanoliva.com:3306.
 
 # Estructura
