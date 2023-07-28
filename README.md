@@ -3,7 +3,7 @@
 
 [FRONT END REPO](https://github.com/laucha54321/pagina-Universitaria-Front)
 
-[BACK END REPO](https://github.com/laucha54321/tp-mysql-be/settings)
+[BACK END REPO](https://github.com/laucha54321/tp-mysql-be)
 
 # TP Desarollo BackEnd
 
