@@ -22,14 +22,14 @@ Utilizo un archivo .env para las conexiones, este archivo no existe en el repo p
 flowchart LR;
     subgraph Back End
     subgraph Base de Datos
-        id1[(laureanoliva:3306)]
+        id1[(laureanoliva.com:3306)]
     end
     subgraph API
         app.js
         authentication.js;
     end
-        id1[(laureanoliva:3306)] --- app.js;
-        id1[(laureanoliva:3306)] --- authentication.js;
+        id1[(laureanoliva.com:3306)] --- app.js;
+        id1[(laureanoliva.com:3306)] --- authentication.js;
     end
     subgraph Front End
         app.js --- AngularApp
