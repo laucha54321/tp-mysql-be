@@ -10,7 +10,7 @@ Los usuarios se almacenan en la base de datos en laureanoliva.com:3306. Se almac
 
 
 ````mermaid
-flowchart TB;
+flowchart LR;
     subgraph Back End
     subgraph Base de Datos
         id1[(laureanoliva:3306)]
