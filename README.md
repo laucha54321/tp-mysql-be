@@ -10,14 +10,21 @@ Los usuarios se almacenan en la base de datos en laureanoliva.com:3306. Se almac
 
 
 ````mermaid
-flowchart LR;
+flowchart TB;
     subgraph Back End
-    id1[(laureanoliva:3306)] --- app.js;
-    id1[(laureanoliva:3306)] --- authentication.js;
+    subgraph Base de Datos
+        id1[(laureanoliva:3306)]
+    end
+    subgraph API
+        app.js
+        authentication.js;
+    end
+        id1[(laureanoliva:3306)] --- app.js;
+        id1[(laureanoliva:3306)] --- authentication.js;
     end
     subgraph Front End
-    AngularApp --- app.js
-    AngularApp --- authentication.js;
+        app.js --- AngularApp
+        authentication.js --- AngularApp;
     end
 
      
