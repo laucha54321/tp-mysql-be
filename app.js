@@ -1,5 +1,4 @@
 import {    getPersona,
-            getPersonas,
             createPersona,
             getCursos,
             getCurso,
@@ -18,17 +17,46 @@ app.use(cors({
 }))
 
 // #region PERSONAS 
-app.get("/personas",async (req,res)=>{
-    res.send(await getPersonas())
-}); 
 
+// Busco todas las personas y las traigo en un array
+// No tiene mucho sentido retornar todas las personas
+// 
+// app.get("/personas",async (req,res)=>{
+//     try{
+//         const personas = await getPersonas()
+//         res.send()
+//     }
+//     catch{
+//         res.send('Error en getPersonas()')
+//     }
+// }); 
+
+// Busco una persona con el id
 app.get("/personas/:id",async (req,res)=>{
-    res.send(await getPersona(req.params.id))
+    //Hay que tener cuidado de no devolver el hash de la contrasena
+    try{
+        const persona = await getPersona(req.params.id);
+        res.send({
+            "nombre":persona.nombre,
+            "apellido":persona.apellido,
+            "email":persona.email,
+            "fecha_nacimiento":persona.fecha_nacimiento,
+            "fecha_creacion":persona.fecha_creacion
+        });
+    }
+    catch{
+        res.send('Error en getPersona(req.params.id)')
+    }
 });
 
+//Creo una persona a travez de un post request
 app.post("/personas", async (req,res)=>{
-    res.send(await createPersona(req.body))
-    console.log(req.body)
+    try{
+        res.send(await createPersona(req.body))
+    }
+    catch{
+        res.send('Error en createPersona(req.body)')
+    }
 });
 
 // app.post("/personas", async (req,res)=>{

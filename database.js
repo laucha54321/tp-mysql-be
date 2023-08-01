@@ -35,12 +35,6 @@ export async function createPersona(param){
     return result;
 };
 
-export async function getPersonas(){
-    const result = await pool.query(`
-        SELECT * FROM personas;
-    `);
-    return result;
-};
 
 export async function getPasswordHash(id){
     const[rows] = await pool.query(`
