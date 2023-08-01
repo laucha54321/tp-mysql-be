@@ -15,10 +15,18 @@ app.use(express.json());
 // #region LOGIN
 
 app.post("/login",async(req,res)=>{
-    const { id, contrasena } = req.body;
-    const validPass = await bcrypt.compare(contrasena, await getPasswordHash(id));
-    const accessToken = jwt.sign({id:id}, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '5h'});
-    res.send({ accessToken: accessToken });
+    try{
+        const { id, contrasena } = req.body;
+        const validPass = await bcrypt.compare(contrasena, await getPasswordHash(id));
+        const accessToken = jwt.sign({id:id}, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '5h'});
+        res.send({ accessToken: accessToken });
+    }catch{
+        if(req.body.id == null){
+            res.send('No ID')
+        }else if(req.body.contrasena == null){
+            res.send('No Contrasena')
+        }
+    }
 });
 
 

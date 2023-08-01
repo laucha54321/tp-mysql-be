@@ -29,8 +29,8 @@ export async function getPersona(id){
 //Crear una Persona
 export async function createPersona(param){
     const result = await pool.query(`
-        INSERT INTO personas(nombre, apellido, contrasena, email, telefono, fecha_nacimiento)
-        VALUES (?,?,?,?,?,?)`,[param.nombre, param.apellido, await bcrypt.hash(param.contrasena,11), param.email, param.telefono, param.fecha_nacimiento]
+        INSERT INTO personas(nombre, apellido, contrasena, email, fecha_nacimiento)
+        VALUES (?,?,?,?,?)`,[param.nombre, param.apellido, await bcrypt.hash(param.contrasena,11), param.email, param.fecha_nacimiento]
     );
     return result;
 };
