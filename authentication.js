@@ -13,7 +13,8 @@ app.use(cors({
 app.use(express.json());
 
 // #region LOGIN
-
+// valida si la contrasena es correcta,
+// si es asi entonces crea un token que luego envia al front end
 app.post("/login",async(req,res)=>{
     try{
         const { id, contrasena } = req.body;

@@ -35,7 +35,6 @@ export async function createPersona(param){
     return result;
 };
 
-
 export async function getPasswordHash(id){
     const[rows] = await pool.query(`
         SELECT *
@@ -72,6 +71,11 @@ export async function createCurso(param){
         INSERT INTO cursos(nombre_curso,descripcion,profesor_id)
         VALUES (?,?,?)`,[param.nombre_curso, param.descripcion, param.profesor_id]
     );
+    // const createTable = await pool.query(`
+    //     CREATE TABLE fisicaAlumnos(
+    //         id_alumno integer PRIMARY KEY
+    //     );
+    // `)
     return result;
 };
 //#endregion
