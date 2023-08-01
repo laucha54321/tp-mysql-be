@@ -7,10 +7,14 @@ import {    getPersona,
 } from "./database.js";
 
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
 app.use(express.json());
 
+app.use(cors({
+    origin:'http://localhost:4200',
+}))
 
 // #region PERSONAS 
 app.get("/personas",async (req,res)=>{
@@ -22,9 +26,14 @@ app.get("/personas/:id",async (req,res)=>{
 });
 
 app.post("/personas", async (req,res)=>{
-    const aux = await createPersona(req.body)
-    res.status(201).send(aux)
+    res.send(await createPersona(req.body))
+    console.log(req.body)
 });
+
+// app.post("/personas", async (req,res)=>{
+//     const aux = await createPersona(req.body)
+//     res.status(201).send(aux)
+// });
 // #endregion
 
 // #region CURSOS
@@ -43,6 +52,20 @@ app.post("/cursos", async (req,res)=>{
 
 // #endregion
 
+
+// #region AUTH
+function authenticateToken(req,res,next){
+    const authHeader = req.header['authorization'];
+    const token = auth.Header && auth.Header.split('')[1];
+
+    if(token == null) return res.sendStatus(401);
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET,(err,user)=>{
+        if(err) return res.sendStatus(403);
+        req.user = user
+        next()
+    });
+}
+// #endregion
  
 
 app.listen(8080,()=>{

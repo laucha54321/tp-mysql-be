@@ -3,8 +3,13 @@ import { getPasswordHash } from './database.js';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import cors from 'cors';
+dotenv.config();
 
 const app = express();
+app.use(cors({
+    origin:'http://localhost:4200',
+}))
 app.use(express.json());
 
 // #region LOGIN
@@ -12,10 +17,12 @@ app.use(express.json());
 app.post("/login",async(req,res)=>{
     const { id, contrasena} = req.body;
     const validPass = await bcrypt.compare(contrasena, await getPasswordHash(id));
-    console.log(validPass);
+    console.log('alo')
     const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET);
-    res.send({ accessToken: accessToken});
+    res.send({ accessToken: accessToken });
 });
+
+
 
 // #endregion
 
