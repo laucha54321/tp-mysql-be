@@ -15,10 +15,9 @@ app.use(express.json());
 // #region LOGIN
 
 app.post("/login",async(req,res)=>{
-    const { id, contrasena} = req.body;
+    const { id, contrasena } = req.body;
     const validPass = await bcrypt.compare(contrasena, await getPasswordHash(id));
-    console.log('alo')
-    const accessToken = jwt.sign(id, process.env.ACCESS_TOKEN_SECRET);
+    const accessToken = jwt.sign({id:id}, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '5h'});
     res.send({ accessToken: accessToken });
 });
 

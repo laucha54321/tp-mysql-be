@@ -6,6 +6,7 @@ import {    getPersona,
             createCurso
 } from "./database.js";
 
+import jwt from 'jsonwebtoken'
 import express from 'express';
 import cors from 'cors';
 
@@ -54,14 +55,19 @@ app.post("/cursos", async (req,res)=>{
 
 
 // #region AUTH
+app.post("/auth", authenticateToken, async (req,res)=>{
+    res.send(await getPersona(req.id))
+})
+
 function authenticateToken(req,res,next){
-    const authHeader = req.header['authorization'];
-    const token = auth.Header && auth.Header.split('')[1];
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
 
     if(token == null) return res.sendStatus(401);
-    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET,(err,user)=>{
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET,(err,content)=>{
         if(err) return res.sendStatus(403);
-        req.user = user
+        console.log(content.id)
+        req.id = content.id
         next()
     });
 }
