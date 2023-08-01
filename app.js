@@ -18,31 +18,13 @@ app.use(cors({
 
 // #region PERSONAS 
 
-// Busco todas las personas y las traigo en un array
-// No tiene mucho sentido retornar todas las personas
-// 
-// app.get("/personas",async (req,res)=>{
-//     try{
-//         const personas = await getPersonas()
-//         res.send()
-//     }
-//     catch{
-//         res.send('Error en getPersonas()')
-//     }
-// }); 
 
 // Busco una persona con el id
 app.get("/personas/:id",async (req,res)=>{
     //Hay que tener cuidado de no devolver el hash de la contrasena
     try{
         const persona = await getPersona(req.params.id);
-        res.send({
-            "nombre":persona.nombre,
-            "apellido":persona.apellido,
-            "email":persona.email,
-            "fecha_nacimiento":persona.fecha_nacimiento,
-            "fecha_creacion":persona.fecha_creacion
-        });
+        res.send(persona);
     }
     catch{
         res.send('Error en getPersona(req.params.id)')
@@ -67,16 +49,31 @@ app.post("/personas", async (req,res)=>{
 
 // #region CURSOS
 app.get("/cursos", async(req,res)=>{
-    res.send(await getCursos())
+    try{
+        res.send(await getCursos())
+    }
+    catch{
+        res.send('Error en getCursos()')
+    }
 });
 
 app.get("/cursos/:id",async (req,res)=>{
-    res.send(await getCurso(req.params.id))
+    try{
+        res.send(await getCurso(req.params.id))
+    }
+    catch{
+        res.send('Error en getCurso(req.params.id)')
+    }
 });
 
 app.post("/cursos", async (req,res)=>{
-    const aux = await createCurso(req.body)
-    res.status(201).send(aux)
+    try{
+        const aux = await createCurso(req.body)
+        res.status(201).send(aux)
+    }
+    catch{
+        res.send('Error en createCurso(req.body)')
+    }
 });
 
 // #endregion
@@ -84,7 +81,12 @@ app.post("/cursos", async (req,res)=>{
 
 // #region AUTH
 app.post("/auth", authenticateToken, async (req,res)=>{
-    res.send(await getPersona(req.id))
+    try{
+        res.send(await getPersona(req.id))
+    }
+    catch{
+        res.send('Error en la autenticacion')
+    }
 })
 
 function authenticateToken(req,res,next){
