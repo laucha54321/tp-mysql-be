@@ -16,7 +16,7 @@ El archivo de [app.js](app.js) seria el encargado de las requests y el de [authe
 
 Los usuarios se almacenan en la base de datos en localhost:3306. Se almacenan usando [bcrypt](https://github.com/kelektiv/node.bcrypt.js), se hashean en total 11 veces.
 
-Utilizo un archivo .env para las conexiones, este archivo no existe en el repo por seguridad.
+Usamos un archivo .env para las conexiones, este archivo no existe en el repo por seguridad.
 
 ```mermaid
 flowchart LR;
