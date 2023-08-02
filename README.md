@@ -46,9 +46,9 @@ Cursos tiene el siguiente formato:
 |1|Fisica 1|Cinematica|2|
 
 Personas tiene el siguiente formato:
-|id_persona|nombre|apellido|email|telefono|contrasena|fecha_nacimiento|fecha_creacion|
-|-|-|-|-|-|-|-|-|
-|1|Cillian|Murphy|122312312|cilianmuyrphy@yahoo.com|23414234|1976-05-25|
+|id_persona|nombre|apellido|email|contrasena|fecha_nacimiento|fecha_creacion|
+|-|-|-|-|-|-|-|
+|1|Cillian|Murphy|cilianmuyrphy@yahoo.com|122312312|1976-05-25|
 
 Los Datos son datos de ejemplo. Los id son AUTOINCREMNTALES.
 
