@@ -14,7 +14,7 @@ La idea es tener dos programas distintos en distintos puertos uno que se encargu
 
 El archivo de [app.js](app.js) seria el encargado de las requests y el de [authentication.js](authentication.js) el encargado de hacer las validaciones de los usuarios. Si utilizamos JWT entonces no tenemos que manejar sesiones en el backend solo guardar los tokens en el front y usarlos para acceder.
 
-Los usuarios se almacenan en la base de datos en laureanoliva.com:3306. Se almacenan usando [bcrypt](https://github.com/kelektiv/node.bcrypt.js), se hashean en total 11 veces.
+Los usuarios se almacenan en la base de datos en localhost:3306. Se almacenan usando [bcrypt](https://github.com/kelektiv/node.bcrypt.js), se hashean en total 11 veces.
 
 Utilizo un archivo .env para las conexiones, este archivo no existe en el repo por seguridad.
 
