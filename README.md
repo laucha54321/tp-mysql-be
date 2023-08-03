@@ -93,7 +93,7 @@ Crea un curso con un objeto que se le pasa en el request body como un JSON.
 
 
 ### Links utiles
-(Best Practices for JWT authentication in Angular Apps)[https://www.syncfusion.com/blogs/post/best-practices-for-jwt-authentication-in-angular-apps.aspx]
+[Best Practices for JWT authentication in Angular Apps](https://www.syncfusion.com/blogs/post/best-practices-for-jwt-authentication-in-angular-apps.aspx)
 
 
 
