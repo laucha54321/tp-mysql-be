@@ -14,22 +14,22 @@ La idea es tener dos programas distintos en distintos puertos uno que se encargu
 
 El archivo de [app.js](app.js) seria el encargado de las requests y el de [authentication.js](authentication.js) el encargado de hacer las validaciones de los usuarios. Si utilizamos JWT entonces no tenemos que manejar sesiones en el backend solo guardar los tokens en el front y usarlos para acceder.
 
-Los usuarios se almacenan en la base de datos en laureanoliva.com:3306. Se almacenan usando [bcrypt](https://github.com/kelektiv/node.bcrypt.js), se hashean en total 11 veces.
+Los usuarios se almacenan en la base de datos en localhost:3306. Se almacenan usando [bcrypt](https://github.com/kelektiv/node.bcrypt.js), se hashean en total 11 veces.
 
-Utilizo un archivo .env para las conexiones, este archivo no existe en el repo por seguridad.
+Usamos un archivo .env para las conexiones, este archivo no existe en el repo por seguridad.
 
 ```mermaid
 flowchart LR;
     subgraph Back End
     subgraph Base de Datos
-        id1[(laureanoliva.com:3306)]
+        id1[(localhost:3306)]
     end
     subgraph API
         app.js
         authentication.js;
     end
-        id1[(laureanoliva.com:3306)] --- app.js;
-        id1[(laureanoliva.com:3306)] --- authentication.js;
+        id1[(localhost:3306)] --- app.js;
+        id1[(localhost:3306)] --- authentication.js;
     end
     subgraph Front End
         app.js --- AngularApp
@@ -46,9 +46,9 @@ Cursos tiene el siguiente formato:
 |1|Fisica 1|Cinematica|2|
 
 Personas tiene el siguiente formato:
-|id_persona|nombre|apellido|email|telefono|contrasena|fecha_nacimiento|fecha_creacion|
-|-|-|-|-|-|-|-|-|
-|1|Cillian|Murphy|122312312|cilianmuyrphy@yahoo.com|23414234|1976-05-25|
+|id_persona|nombre|apellido|email|contrasena|fecha_nacimiento|fecha_creacion|
+|-|-|-|-|-|-|-|
+|1|Cillian|Murphy|cilianmuyrphy@yahoo.com|122312312|1976-05-25|
 
 Los Datos son datos de ejemplo. Los id son AUTOINCREMNTALES.
 
@@ -90,6 +90,10 @@ Crea un curso con un objeto que se le pasa en el request body como un JSON.
     "fecha_nacimiento":"1976-05-25"
 }
 ```
+
+
+### Links utiles
+[Best Practices for JWT authentication in Angular Apps](https://www.syncfusion.com/blogs/post/best-practices-for-jwt-authentication-in-angular-apps.aspx)
 
 
 
