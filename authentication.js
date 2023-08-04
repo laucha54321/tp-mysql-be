@@ -18,26 +18,21 @@ app.use(express.json());
 app.post("/login",async(req,res)=>{
     try{
         const { id, contrasena } = req.body;
-        if(typeof(id) == Number){
-            const validPass = await bcrypt.compare(contrasena, await getPasswordHash(id));
-            if(validPass){
-                const accessToken = jwt.sign({id:id}, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '5h'});
-                res.send({
-                    id: id,
-                    accessToken: accessToken
-                });
-            }else{
-                res.status(401).send("Credenciales Incorrectas")
-            }
-        }
-        else{
-            res.status(401).send("Credenciales Incorrectas")
+        const validPass = await bcrypt.compare(contrasena, await getPasswordHash(id));
+        if(validPass){
+            const accessToken = jwt.sign({id:id}, process.env.ACCESS_TOKEN_SECRET,{expiresIn: '5h'});
+            res.send({
+                id: id,
+                accessToken: accessToken
+            });
+        }else{
+            res.status(401).send("Credenciales Incorrectas.")
         }
     }catch{
         if(req.body.id == null){
-            res.send('No ID')
+            res.send('Debe proveer un ID')
         }else if(req.body.contrasena == null){
-            res.send('No Contrasena')
+            res.send('Debe proveer una Contrasena')
         }
     }
 });
