@@ -5,6 +5,8 @@
 
 [BACK END REPO](https://github.com/laucha54321/tp-mysql-be)
 
+[PROPUESTA](Propuesta.md)
+
 # TP Desarollo BackEnd
 
 Esta es una api que interactua con una base de datos SQL en laureanoliva.com:3306.
