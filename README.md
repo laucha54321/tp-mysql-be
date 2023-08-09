@@ -40,19 +40,41 @@ flowchart LR;
 ```
 
 # Tablas en Base de datos
+```mermaid
+erDiagram
+    Curso ||--o{ Curso_Persona : Contiene
+    Persona ||--o{ Curso_Persona: Participa
+    Curso_Persona ||--o{ Curso_Persona_Nota: Tiene
+    Persona{
+        Integer ID PK
+        String Nombre
+        String Apellido
+        String Contrasena
+        String Email
+        Date Fecha_Nacimiento
+        Date Fecha_Creacion
+    }
+    Curso{
+        Integer ID PK
+        String Nombre_Curso
+        String Descripcion
+    }
+    Curso_Persona{
+        Integer ID_Persona FK,PK
+        Integer ID_Curso FK,PK
+        Integer Categoria
+    }
+    Curso_Persona_Nota{
+        Integer ID PK
+        Integer ID_Persona FK
+        Integer ID_Curso Fk
+        String Descripcion
+        Real Nota    
+    }
+```
 
-En la base de datos hay dos tablas por ahora. Una de las tablas es cursos y la otra personas.
-Cursos tiene el siguiente formato: 
-|id_curso|nombre_curso|descripcion|profesor_id|
-|-|-|-|-|
-|1|Fisica 1|Cinematica|2|
 
-Personas tiene el siguiente formato:
-|id_persona|nombre|apellido|email|contrasena|fecha_nacimiento|fecha_creacion|
-|-|-|-|-|-|-|-|
-|1|Cillian|Murphy|cilianmuyrphy@yahoo.com|122312312|1976-05-25|
-
-Los Datos son datos de ejemplo. Los id son AUTOINCREMNTALES.
+Los ID son AUTOINCREMNTALES.
 
 # REQUEST
 Como se manejan los requests a la app.js.
