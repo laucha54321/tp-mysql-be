@@ -47,34 +47,35 @@ erDiagram
     Curso_Persona ||--o{ Curso_Persona_Nota: Tiene
     Persona{
         Integer ID PK
-        String Nombre
-        String Apellido
-        String Contrasena
-        String Email
-        Date Fecha_Nacimiento
-        Date Fecha_Creacion
+        String nombre
+        String apellido
+        String contrasena
+        String email
+        Date fecha_nacimiento
+        Date fecha_creacion
     }
     Curso{
         Integer ID PK
-        String Nombre_Curso
-        String Descripcion
+        String nombre
+        String descripcion
     }
     Curso_Persona{
         Integer ID_Persona FK,PK
         Integer ID_Curso FK,PK
-        Integer Categoria
+        Integer categoria
     }
     Curso_Persona_Nota{
         Integer ID PK
         Integer ID_Persona FK
         Integer ID_Curso Fk
-        String Descripcion
-        Real Nota    
+        String descripcion
+        Real nota    
     }
 ```
 
 
 Los ID son AUTOINCREMNTALES.
+Todos los nombres de las columnas empiezan con minuscula salvo los IDs. NO USAMOS MAYUSCULAS EN NOMBRES DE COLUMNAS a menos que esta sea para escrivir ID o para la primer letra en las claves foraneas cuando hacemos referencia a la otra tabla. Por ejemplo ID_Persona
 
 # REQUEST
 Como se manejan los requests a la app.js.
