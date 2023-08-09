@@ -75,7 +75,7 @@ erDiagram
 
 
 Los ID son AUTOINCREMNTALES.
-Todos los nombres de las columnas empiezan con minuscula salvo los IDs. NO USAMOS MAYUSCULAS EN NOMBRES DE COLUMNAS a menos que esta sea para escrivir ID o para la primer letra en las claves foraneas cuando hacemos referencia a la otra tabla. Por ejemplo ID_Persona
+Todos los nombres de las columnas empiezan con minuscula salvo los IDs. NO USAMOS MAYUSCULAS EN NOMBRES DE COLUMNAS a menos que esta sea para escribir ID o para la primer letra en las claves foraneas cuando hacemos referencia a la otra tabla. Por ejemplo ID_Persona
 
 # REQUEST
 Como se manejan los requests a la app.js.
