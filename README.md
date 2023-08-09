@@ -76,6 +76,8 @@ erDiagram
 
 Los ID son AUTOINCREMNTALES.
 
+Los nombres de las tablas son en minuscula.
+
 Todos los nombres de las columnas empiezan con minuscula salvo los IDs.
 
 NO USAMOS MAYUSCULAS EN NOMBRES DE COLUMNAS a menos que esta sea para escribir ID o para la primer letra en las claves foraneas cuando hacemos referencia a la otra tabla.
