@@ -1,5 +1,5 @@
 # Pagina Universitaria - Desarollo de Software
-[Propuesta](#propuesta)
+[Propuesta link repo fork](https://github.com/laucha54321/TP_DSW/blob/main/Propuesta_Salv%C3%ADa_Zallocco_Oliva.md)
 
 
 ## Grupo
