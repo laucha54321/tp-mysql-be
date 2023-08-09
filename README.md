@@ -42,10 +42,10 @@ flowchart LR;
 # Tablas en Base de datos
 ```mermaid
 erDiagram
-    Curso ||--o{ Curso_Persona : Contiene
-    Persona ||--o{ Curso_Persona: Participa
-    Curso_Persona ||--o{ Curso_Persona_Nota: Tiene
-    Persona{
+    curso ||--o{ curso_persona : Contiene
+    persona ||--o{ curso_persona: Participa
+    curso_persona ||--o{ curso_persona_nota: Tiene
+    persona{
         Integer ID PK
         String nombre
         String apellido
@@ -54,17 +54,17 @@ erDiagram
         Date fecha_nacimiento
         Date fecha_creacion
     }
-    Curso{
+    curso{
         Integer ID PK
         String nombre
         String descripcion
     }
-    Curso_Persona{
+    curso_persona{
         Integer ID_Persona FK,PK
         Integer ID_Curso FK,PK
         Integer categoria
     }
-    Curso_Persona_Nota{
+    curso_persona_nota{
         Integer ID PK
         Integer ID_Persona FK
         Integer ID_Curso Fk
