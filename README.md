@@ -44,7 +44,9 @@ flowchart LR;
 erDiagram
     curso ||--o{ curso_persona : Contiene
     persona ||--o{ curso_persona: Participa
-    curso_persona ||--o{ curso_persona_nota: Tiene
+    persona ||--o{ curso_persona_nota: Tiene
+    curso ||--o{ curso_persona_nota: Tiene
+
     persona{
         Integer ID PK
         String nombre
