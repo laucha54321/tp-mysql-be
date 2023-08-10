@@ -14,8 +14,8 @@ USE user;
 -- | fecha_nacimiento | date         | NO   |     | NULL              |                   |
 -- +------------------+--------------+------+-----+-------------------+-------------------+
 
-CREATE TABLE personas(
-    id_persona integer PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE persona(
+    ID integer PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(15) NOT NULL,
     apellido VARCHAR(15) NOT NULL,
     email VARCHAR(30),
@@ -34,9 +34,8 @@ CREATE TABLE personas(
 -- | profesor_id  | int          | NO   |     | NULL    |                |
 -- +--------------+--------------+------+-----+---------+----------------+
 
-CREATE TABLE cursos(
-    id_curso integer PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE curso(
+    ID integer PRIMARY KEY AUTO_INCREMENT,
     nombre_curso VARCHAR(15) NOT NULL,
-    descripcion VARCHAR(250),
-    profesor_id integer NOT NULL
+    descripcion VARCHAR(250)
 )

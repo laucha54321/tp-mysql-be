@@ -17,8 +17,8 @@ const pool = mysql.createPool({
 export async function getPersona(id){
     const[rows] = await pool.query(`
         SELECT *
-        FROM personas
-        WHERE id_persona = ? 
+        FROM persona
+        WHERE ID = ? 
         `,[id]
     );
     //Elimino el hash de la contrasena para no pasarselo por la API
@@ -29,7 +29,7 @@ export async function getPersona(id){
 //Crear una Persona
 export async function createPersona(param){
     const result = await pool.query(`
-        INSERT INTO personas(nombre, apellido, contrasena, email, fecha_nacimiento)
+        INSERT INTO persona(nombre, apellido, contrasena, email, fecha_nacimiento)
         VALUES (?,?,?,?,?)`,[param.nombre, param.apellido, await bcrypt.hash(param.contrasena,11), param.email, param.fecha_nacimiento]
     );
     return result;
@@ -38,8 +38,8 @@ export async function createPersona(param){
 export async function getPasswordHash(id){
     const[rows] = await pool.query(`
         SELECT *
-        FROM personas
-        WHERE id_persona = ? 
+        FROM persona
+        WHERE ID = ? 
         `,[id]
     );
     //Devuelvo el hash de la contrasena
@@ -51,7 +51,7 @@ export async function getPasswordHash(id){
 //#region CURSOS
 export async function getCursos(){
     const result = await pool.query(`
-        SELECT * FROM cursos;
+        SELECT * FROM curso;
     `);
     return result;
 };
@@ -59,8 +59,8 @@ export async function getCursos(){
 export async function getCurso(id){
     const [rows] = await pool.query(`
         SELECT *
-        FROM cursos
-        WHERE id_curso = ? 
+        FROM curso
+        WHERE ID = ? 
         `,[id]
     );
     return rows[0];
@@ -68,8 +68,8 @@ export async function getCurso(id){
 
 export async function createCurso(param){
     const result = await pool.query(`
-        INSERT INTO cursos(nombre_curso,descripcion,profesor_id)
-        VALUES (?,?,?)`,[param.nombre_curso, param.descripcion, param.profesor_id]
+        INSERT INTO curso(nombre_curso,descripcion,profesor_id)
+        VALUES (?,?,?)`,[param.nombre_curso, param.descripcion]
     );
     // const createTable = await pool.query(`
     //     CREATE TABLE fisicaAlumnos(
