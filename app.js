@@ -10,10 +10,12 @@ import {    getPersona,
 import jwt from 'jsonwebtoken'
 import express from 'express';
 import cors from 'cors';
+import errorHandler from "./errorHandler.js";
+
+import tryCatch from "./tryCatch.js";
 
 const app = express();
 app.use(express.json());
-
 app.use(cors({
     origin:'http://localhost:4200',
 }))
@@ -21,101 +23,92 @@ app.use(cors({
 // #region PERSONA
 
 //BUSCAR PERSONA
-app.get("/personas/:id",async (req,res)=>{
-    //Hay que tener cuidado de no devolver el hash de la contrasena
-    try{
-        const persona = await getPersona(req.params.id);
-        res.send(persona);
-    }
-    catch{
-        res.send('Error en getPersona(req.params.id)')
-    }
-});
+app.get("/personas/:id",
+    tryCatch(
+        async (req,res,next)=>{
+            const persona = await getPersona(req.params.id);
+            res.send(persona);
+        }
+    )
+);
 
 //CREAR PERSONA
-app.post("/personas", async (req,res)=>{
-    try{
-        res.send(await createPersona(req.body))
-    }
-    catch{
-        res.send('Error en createPersona(req.body)')
-    }
-});
+app.post("/personas", 
+    tryCatch(
+        async (req,res,next)=>{
+            res.send(await createPersona(req.body));
+        }
+    )    
+);
 // #endregion
 
 // #region CURSO
 
 //BUSCAR CURSOS
-app.get("/cursos", async(req,res)=>{
-    try{
-        res.send(await getCursos())
-    }
-    catch{
-        res.send('Error en getCursos()')
-    }
-});
+app.get("/cursos", 
+    tryCatch(
+        async(req,res,next)=>{
+            res.send(await getCursos())
+        }   
+    )
+);
 
 //BUSCAR CURSO
-app.get("/cursos/:id",async (req,res)=>{
-    try{
-        res.send(await getCurso(req.params.id))
-    }
-    catch{
-        res.send('Error en getCurso(req.params.id)')
-    }
-});
+app.get("/cursos/:id",
+    tryCatch(
+        async (req,res,next)=>{
+            const curso = await getCurso(req.params.id);
+            res.send(curso);
+        }
+    )
+);
 
 //CREAR CURSO
-app.post("/cursos", async (req,res)=>{
-    try{
-        const aux = await createCurso(req.body)
-        res.status(201).send(aux)
-    }
-    catch{
-        res.send('Error en createCurso(req.body)')
-    }
-});
+app.post("/cursos",
+    tryCatch(
+        async (req,res,next)=>{
+            const aux = await createCurso(req.body)
+            res.status(201).send(aux)
+        }
+    )
+);
 
 // #endregion
 
 // #region CURSO_PERSONA
 
 // CREAR CURSO_PERSONA
-app.post("/curso_persona", async(req, res)=>{
-    try{
-        const aux = await createCursoPersona(req.body);
-        res.status(201).send(aux)
-    }
-    catch{
-        res.send("Error en createCursoPersona()")
-    }
-});
+app.post("/curso_persona",
+    tryCatch(
+        async(req, res,next)=>{
+            const aux = await createCursoPersona(req.body);
+            res.status(201).send(aux)
+        }
+    )
+);
 // #endregion
 
 // #region CURSO_PERSONA_NOTA
-app.post("/curso_persona_nota", async(req,res)=>{
-    try{
-        const aux = await createCursoPersonaNota(req.body);
-        res.status(201).send(aux)
-    }
-    catch{
-        res.send("Error en createCursoPersonaNota()")
-    }
-});
+app.post("/curso_persona_nota", 
+    tryCatch(
+        async(req,res,next)=>{
+            const aux = await createCursoPersonaNota(req.body);
+            res.status(201).send(aux)
+        }
+    )
+);
 
 
 // #endregion
 
-
 // #region AUTH
-app.post("/auth", authenticateToken, async (req,res)=>{
-    try{
-        res.send(await getPersona(req.id))
-    }
-    catch{
-        res.send('Error en la autenticacion')
-    }
-})
+app.post("/auth", authenticateToken,
+     tryCatch(
+        async (req,res,next)=>{
+            res.send(await getPersona(req.id))
+        }
+    )
+)
 
 function authenticateToken(req,res,next){
     const authHeader = req.headers['authorization'];
@@ -135,8 +128,8 @@ function authenticateToken(req,res,next){
     });
 }
 // #endregion
- 
 
+app.use(errorHandler);
 app.listen(8080,()=>{
     console.log("Server running on localhost:8080")
 });

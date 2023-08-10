@@ -22,8 +22,15 @@ export async function getPersona(id){
         WHERE ID = ? 
         `,[id]
     );
-    //Elimino el hash de la contrasena para no pasarselo por la API
-    delete rows[0].contrasena;
+    if(rows[0]){
+        //ELIMINAR HASH DE PASSWORD
+        delete rows[0].contrasena;
+    }
+    else{
+        const error = new Error('NO EXISTE USUARIO con ese ID');
+        error.code = 404;
+        throw error;
+    }
     return rows[0];
 };
 
@@ -43,6 +50,11 @@ export async function getPasswordHash(id){
         WHERE ID = ? 
         `,[id]
     );
+    if(!rows[0]){
+        const error = new Error('NO EXISTE USUARIO con ese ID');
+        error.code = 404;
+        throw error;
+    }
     //Devuelvo el hash de la contrasena
     return rows[0].contrasena;
 };
@@ -67,6 +79,11 @@ export async function getCurso(id){
         WHERE ID = ? 
         `,[id]
     );
+    if(!rows[0]){
+        const error = new Error('NO EXISTE CURSO con ese ID');
+        error.code = 404;
+        throw error;
+    }
     return rows[0];
 };
 
