@@ -12,8 +12,9 @@ const pool = mysql.createPool({
 }).promise();
 
 
-//#region PERSONAS
-//Encontrar persona por ID
+//#region PERSONA
+
+//BUSCAR PERSONA
 export async function getPersona(id){
     const[rows] = await pool.query(`
         SELECT *
@@ -26,7 +27,7 @@ export async function getPersona(id){
     return rows[0];
 };
 
-//Crear una Persona
+//CREAR PERSONA
 export async function createPersona(param){
     const result = await pool.query(`
         INSERT INTO persona(nombre, apellido, contrasena, email, fecha_nacimiento)
@@ -48,7 +49,9 @@ export async function getPasswordHash(id){
 
 //#endregion
 
-//#region CURSOS
+//#region CURSO
+
+//BUSCAR CURSOS
 export async function getCursos(){
     const result = await pool.query(`
         SELECT * FROM curso;
@@ -56,6 +59,7 @@ export async function getCursos(){
     return result;
 };
 
+//BUSCAR CURSO
 export async function getCurso(id){
     const [rows] = await pool.query(`
         SELECT *
@@ -66,51 +70,39 @@ export async function getCurso(id){
     return rows[0];
 };
 
+//CREAR CURSO
 export async function createCurso(param){
     const result = await pool.query(`
-        INSERT INTO curso(nombre_curso,descripcion,profesor_id)
-        VALUES (?,?,?)`,[param.nombre_curso, param.descripcion]
+        INSERT INTO curso(nombre,descripcion)
+        VALUES (?,?)`,[param.nombre_curso, param.descripcion]
     );
-    // const createTable = await pool.query(`
-    //     CREATE TABLE fisicaAlumnos(
-    //         id_alumno integer PRIMARY KEY
-    //     );
-    // `)
     return result;
 };
 //#endregion
 
+//#region CURSO_PERSONA
 
-//=======================================================
-//Como Crear un Curso
-//=======================================================
-// console.log(await createCurso({
-//     "nombre_curso":"Fisica 1",
-//     "descripcion":"Cinematica",
-//     "profesor_id":"2"
-// }));
+//CREAR CURSO_PERSONA
+export async function createCursoPersona(param){
+    const result = await pool.query(`
+        INSERT INTO curso_persona(ID_Persona, ID_Curso, categoria)
+        VALUES (?,?,?)`,[param.ID_Persona, param.ID_Curso, param.categoria]
+    );
+    return result;
+}
 
-//=======================================================
-//Como Crear un persona
-//=======================================================
-// console.log(await createPersona(
-    // {
-    //     "nombre":"Cillian",
-    //     "apellido":"Murphy",
-    //     "contrasena":"122312312",
-    //     "email":"cilianmuyrphy@yahoo.com",
-    //     "telefono":"23414234",
-    //     "fecha_nacimiento":"1976-05-25"
-    // }
-// ),
-// await createPersona(
-//     {
-//         nombre:'Laureano',
-//         apellido:'Oliva',
-//         contrasena:'sajkdlf',
-//         email:'laureano@gmail.com',
-//         telefono:'23414234',
-//         fecha_nacimiento:'2001-07-25'
-//     }
-// ));
+//#endregion
+
+//#region CURSO_PERSONA_NOTA
+
+//CREAR CURSO_PERSONA_NOTA
+export async function createCursoPersonaNota(param){
+    const result = await pool.query(`
+        INSERT INTO curso_persona_nota(ID_Persona, ID_Curso, descripcion, nota)
+        VALUES (?,?,?,?)`,[param.ID_Persona, param.ID_Curso, param.descripcion, param.nota]
+    );
+    return result; 
+}
+
+//#endregion
 

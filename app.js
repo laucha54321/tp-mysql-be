@@ -2,7 +2,9 @@ import {    getPersona,
             createPersona,
             getCursos,
             getCurso,
-            createCurso
+            createCurso,
+            createCursoPersona,
+            createCursoPersonaNota
 } from "./database.js";
 
 import jwt from 'jsonwebtoken'
@@ -16,10 +18,9 @@ app.use(cors({
     origin:'http://localhost:4200',
 }))
 
-// #region PERSONAS 
+// #region PERSONA
 
-
-// Busco una persona con el id
+//BUSCAR PERSONA
 app.get("/personas/:id",async (req,res)=>{
     //Hay que tener cuidado de no devolver el hash de la contrasena
     try{
@@ -31,7 +32,7 @@ app.get("/personas/:id",async (req,res)=>{
     }
 });
 
-//Creo una persona a travez de un post request
+//CREAR PERSONA
 app.post("/personas", async (req,res)=>{
     try{
         res.send(await createPersona(req.body))
@@ -40,14 +41,11 @@ app.post("/personas", async (req,res)=>{
         res.send('Error en createPersona(req.body)')
     }
 });
-
-// app.post("/personas", async (req,res)=>{
-//     const aux = await createPersona(req.body)
-//     res.status(201).send(aux)
-// });
 // #endregion
 
-// #region CURSOS
+// #region CURSO
+
+//BUSCAR CURSOS
 app.get("/cursos", async(req,res)=>{
     try{
         res.send(await getCursos())
@@ -57,6 +55,7 @@ app.get("/cursos", async(req,res)=>{
     }
 });
 
+//BUSCAR CURSO
 app.get("/cursos/:id",async (req,res)=>{
     try{
         res.send(await getCurso(req.params.id))
@@ -66,6 +65,7 @@ app.get("/cursos/:id",async (req,res)=>{
     }
 });
 
+//CREAR CURSO
 app.post("/cursos", async (req,res)=>{
     try{
         const aux = await createCurso(req.body)
@@ -75,6 +75,34 @@ app.post("/cursos", async (req,res)=>{
         res.send('Error en createCurso(req.body)')
     }
 });
+
+// #endregion
+
+// #region CURSO_PERSONA
+
+// CREAR CURSO_PERSONA
+app.post("/curso_persona", async(req, res)=>{
+    try{
+        const aux = await createCursoPersona(req.body);
+        res.status(201).send(aux)
+    }
+    catch{
+        res.send("Error en createCursoPersona()")
+    }
+});
+// #endregion
+
+// #region CURSO_PERSONA_NOTA
+app.post("/curso_persona_nota", async(req,res)=>{
+    try{
+        const aux = await createCursoPersonaNota(req.body);
+        res.status(201).send(aux)
+    }
+    catch{
+        res.send("Error en createCursoPersonaNota()")
+    }
+});
+
 
 // #endregion
 
