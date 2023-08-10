@@ -5,6 +5,8 @@
 
 [BACK END REPO](https://github.com/laucha54321/tp-mysql-be)
 
+[PROPUESTA](Propuesta.md)
+
 # TP Desarollo BackEnd
 
 Esta es una api que interactua con una base de datos SQL en laureanoliva.com:3306.
@@ -38,19 +40,51 @@ flowchart LR;
 ```
 
 # Tablas en Base de datos
+```mermaid
+erDiagram
+    curso ||--o{ curso_persona : Contiene
+    persona ||--o{ curso_persona: Participa
+    persona ||--o{ curso_persona_nota: Tiene
+    curso ||--o{ curso_persona_nota: Tiene
 
-En la base de datos hay dos tablas por ahora. Una de las tablas es cursos y la otra personas.
-Cursos tiene el siguiente formato: 
-|id_curso|nombre_curso|descripcion|profesor_id|
-|-|-|-|-|
-|1|Fisica 1|Cinematica|2|
+    persona{
+        Integer ID PK
+        String nombre
+        String apellido
+        String contrasena
+        String email
+        Date fecha_nacimiento
+        Date fecha_creacion
+    }
+    curso{
+        Integer ID PK
+        String nombre
+        String descripcion
+    }
+    curso_persona{
+        Integer ID_Persona FK,PK
+        Integer ID_Curso FK,PK
+        Integer categoria
+    }
+    curso_persona_nota{
+        Integer ID PK
+        Integer ID_Persona FK
+        Integer ID_Curso Fk
+        String descripcion
+        Real nota    
+    }
+```
 
-Personas tiene el siguiente formato:
-|id_persona|nombre|apellido|email|contrasena|fecha_nacimiento|fecha_creacion|
-|-|-|-|-|-|-|-|
-|1|Cillian|Murphy|cilianmuyrphy@yahoo.com|122312312|1976-05-25|
 
-Los Datos son datos de ejemplo. Los id son AUTOINCREMNTALES.
+Los ID son AUTOINCREMNTALES.
+
+Los nombres de las tablas son en minuscula.
+
+Todos los nombres de las columnas empiezan con minuscula salvo los IDs.
+
+NO USAMOS MAYUSCULAS EN NOMBRES DE COLUMNAS a menos que esta sea para escribir ID o para la primer letra en las claves foraneas cuando hacemos referencia a la otra tabla.
+
+Por ejemplo ID_Persona
 
 # REQUEST
 Como se manejan los requests a la app.js.
