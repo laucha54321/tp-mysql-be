@@ -121,5 +121,18 @@ export async function createCursoPersonaNota(param){
     return result; 
 }
 
+
+//BUSCAR CURSO_PERSONA_NOTA POR ID PERSONA
+export async function getCursoPersonaNota(id){
+    const result = await pool.query(`
+        SELECT nombre, curso.descripcion as tema, curso_persona_nota.descripcion,nota
+        FROM curso_persona_nota 
+        INNER JOIN curso
+        ON curso_persona_nota.ID_Curso = curso.ID
+        WHERE ID_Persona = ?`,[id]
+    );
+    return result;
+}
+
 //#endregion
 

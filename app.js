@@ -4,7 +4,8 @@ import {    getPersona,
             getCurso,
             createCurso,
             createCursoPersona,
-            createCursoPersonaNota
+            createCursoPersonaNota,
+            getCursoPersonaNota
 } from "./database.js";
 
 import jwt from 'jsonwebtoken'
@@ -89,6 +90,7 @@ app.post("/curso_persona",
 // #endregion
 
 // #region CURSO_PERSONA_NOTA
+
 app.post("/curso_persona_nota", 
     tryCatch(
         async(req,res,next)=>{
@@ -97,6 +99,15 @@ app.post("/curso_persona_nota",
         }
     )
 );
+
+app.get("/curso_persona_nota",authenticateToken,
+        tryCatch(
+            async(req,res,next)=>{
+                const aux = await getCursoPersonaNota(req.id);
+                res.status(201).send(aux)
+            }
+        )
+)
 
 
 // #endregion
@@ -114,17 +125,14 @@ function authenticateToken(req,res,next){
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
     
-    console.log(token)
-    
     if(token == null){
         res.sendStatus(401);
     };
     
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET,(err,content)=>{
         if(err) return res.sendStatus(403);
-        console.log(content.id)
-        req.id = content.id
-        next()
+        req.id = content.id;
+        next();
     });
 }
 // #endregion
