@@ -5,7 +5,8 @@ import {    getPersona,
             createCurso,
             createCursoPersona,
             createCursoPersonaNota,
-            getCursoPersonaNota
+            getCursoPersonaNota,
+            getCursoPersonaNota_Profesor
 } from "./database.js";
 
 import jwt from 'jsonwebtoken'
@@ -91,6 +92,7 @@ app.post("/curso_persona",
 
 // #region CURSO_PERSONA_NOTA
 
+//CREAR CURSO_PERSONA_NOTA
 app.post("/curso_persona_nota", 
     tryCatch(
         async(req,res,next)=>{
@@ -100,10 +102,19 @@ app.post("/curso_persona_nota",
     )
 );
 
+//BUSCAR CURSO_PERSONA_NOTA CON ID TOKEN
 app.get("/curso_persona_nota",authenticateToken,
         tryCatch(
             async(req,res,next)=>{
                 const aux = await getCursoPersonaNota(req.id);
+                res.status(201).send(aux)
+            }
+        )
+)
+app.get("/curso_persona_nota/profesor",authenticateToken,
+        tryCatch(
+            async(req,res,next)=>{
+                const aux = await getCursoPersonaNota_Profesor(req.id);
                 res.status(201).send(aux)
             }
         )

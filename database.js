@@ -134,5 +134,23 @@ export async function getCursoPersonaNota(id){
     return result;
 }
 
+//BUSCAR CURSO_PERSONA_NOTA DE TODOS LOS ALUMNOS DE UNA CLASE
+export async function getCursoPersonaNota_Profesor(idProfesor){
+
+    const result = await pool.query(`
+        SELECT persona.nombre,persona.apellido, curso.nombre as materia, curso.descripcion as tema, curso_persona_nota.descripcion,nota
+        FROM curso_persona
+        INNER JOIN curso
+        ON curso_persona.ID_Curso = curso.ID
+        INNER JOIN curso_persona_nota
+        ON curso_persona_nota.ID_Curso = curso.ID
+        INNER JOIN persona
+        ON curso_persona_nota.ID_Persona = persona.ID
+        WHERE (categoria = 1 AND curso_persona.ID_Persona = ?) 
+        `,[idProfesor]    
+    );
+    return result;
+}
+
 //#endregion
 
