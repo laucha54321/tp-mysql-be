@@ -86,45 +86,6 @@ NO USAMOS MAYUSCULAS EN NOMBRES DE COLUMNAS a menos que esta sea para escribir I
 
 Por ejemplo ID_Persona
 
-# REQUEST
-Como se manejan los requests a la app.js.
-## Cursos 
-### GET (sin parametros)
-Devuelve todos los cursos
-
-### GET (con parametro en la URL id_curso)
-Devuelve solo el curso con ese id_curso
-
-### POST (con info en el BODY)
-Crea un curso con un objeto que se le pasa en el request body como un JSON.
-```JSON
-{
-    "nombre_curso":"Fisica 1",
-    "descripcion":"Cinematica",
-    "profesor_id":"2"
-}
-```
-
-## Personas
-### GET (sin parametros)
-Devuelve todos las personas
-
-### GET (con parametro en la URL id_personas)
-Devuelve solo el curso con ese id_personas
-
-### POST (con info en el BODY)
-Crea un curso con un objeto que se le pasa en el request body como un JSON.
-```JSON
-{
-    "nombre":"Cillian",
-    "apellido":"Murphy",
-    "contrasena":"122312312",
-    "email":"cilianmuyrphy@yahoo.com",
-    "telefono":"23414234",
-    "fecha_nacimiento":"1976-05-25"
-}
-```
-
 
 ### Links utiles
 [Best Practices for JWT authentication in Angular Apps](https://www.syncfusion.com/blogs/post/best-practices-for-jwt-authentication-in-angular-apps.aspx)
