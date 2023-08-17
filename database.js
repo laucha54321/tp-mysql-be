@@ -17,20 +17,11 @@ const pool = mysql.createPool({
 //BUSCAR PERSONA
 export async function getPersona(id){
     const[rows] = await pool.query(`
-        SELECT *
+        SELECT ID, nombre, apellido, email, fecha_nacimiento, fecha_creacion
         FROM persona
         WHERE ID = ? 
         `,[id]
     );
-    if(rows[0]){
-        //ELIMINAR HASH DE PASSWORD
-        delete rows[0].contrasena;
-    }
-    else{
-        const error = new Error('NO EXISTE USUARIO con ese ID');
-        error.code = 404;
-        throw error;
-    }
     return rows[0];
 };
 
