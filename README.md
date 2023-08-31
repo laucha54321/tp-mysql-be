@@ -7,6 +7,14 @@
 
 [PROPUESTA](Propuesta.md)
 
+Para ejecutar el Back End se puede abrir dos terminales y ejecutar estos comandos:
+``` javascript
+npm run dev
+```
+``` javascript
+npm run dev-auth
+```
+
 # TP Desarollo BackEnd
 
 Esta es una api que interactua con una base de datos SQL en laureanoliva.com:3306.
