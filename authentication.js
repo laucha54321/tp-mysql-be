@@ -23,6 +23,7 @@ app.post(
   "/login",
   tryCatch(async (req, res) => {
     const { id, contrasena } = req.body;
+
     const validPass = await bcrypt.compare(
       contrasena,
       await getPasswordHash(id)
