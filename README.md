@@ -18,6 +18,7 @@ npm run dev-auth
 # TP Desarollo BackEnd
 
 Esta es una api que interactua con una base de datos SQL en laureanoliva.com:3306.
+Quizas usar Drizzle o Prisma como ORM estaria bueno.
 
 # Estructura
 La idea es tener dos programas distintos en distintos puertos uno que se encargue de la validacion y otro que se encargue de los requests. Manejamos las validaciones con [JSON web tokens](https://jwt.io).
