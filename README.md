@@ -94,6 +94,49 @@ NO USAMOS MAYUSCULAS EN NOMBRES DE COLUMNAS a menos que esta sea para escribir I
 
 Por ejemplo ID_Persona
 
+## CRUD
+
+### persona
+
+|Descripcion|Funcion|
+|-|-|
+|Create|`createPersona({})`|
+|Read|`getPersona({})`|
+|Read|`getPasswordHash(id)`|
+|Update|-|
+|Delete||
+
+### curso
+
+|Descripcion|Funcion|
+|-|-|
+|Create|`createCurso({})`|
+|Read|`getCurso(id)`|
+|Read|`getCursos()`|
+|Update|-|
+|Delete||
+
+### curso_persona
+
+|Descripcion|Funcion|
+|-|-|
+|Create|`createPersona({})`|
+|Read|`getPersona(id)`|
+|Update|-|
+|Delete||
+
+
+### curso_persona_nota
+
+|Descripcion|Funcion|
+|-|-|
+|Create|`createCursoPersonaNota({})`|
+|Read|`getCursoPersonaNota(id)`|
+|Read|`getCursoPersonaNota_Profesor(idProfesor)`|
+|Update|-|
+|Delete||
+
+
 
 ### Links utiles
 [Best Practices for JWT authentication in Angular Apps](https://www.syncfusion.com/blogs/post/best-practices-for-jwt-authentication-in-angular-apps.aspx)

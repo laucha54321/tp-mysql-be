@@ -44,7 +44,55 @@ export async function createPersona(param) {
   );
   return result;
 }
+// MODIFICAR PERSONA
+export async function modPersona(param){
 
+  var result;
+
+  switch (param.mod) {
+      case 'nombre':
+        result = await pool.query(
+            `
+              UPDATE persona
+              SET
+              nombre  = ?
+              WHERE
+              ID = ? 
+            `,
+          [param.value, param.id]
+        )
+        return result
+      case 'apellido':
+        result = await pool.query(
+            `
+              UPDATE persona
+              SET
+              apellido  = ?
+              WHERE
+              ID = ? 
+            `,
+            [param.value, param.id]
+        )
+        return result
+      case 'email':
+        result = await pool.query(
+        `
+          UPDATE persona
+          SET
+          email  = ?
+          WHERE
+          ID = ? 
+        `, 
+        [param.value, param.id]
+        )  
+        return result
+      default:
+        return false
+  }
+}
+
+
+//BUSCAR HASH PASS
 export async function getPasswordHash(id) {
   const [rows] = await pool.query(
     `
@@ -103,6 +151,12 @@ export async function createCurso(param) {
   );
   return result;
 }
+
+//MODIFICAR CURSO
+export async function modCurso(){
+  
+} 
+
 //#endregion
 
 //#region CURSO_PERSONA

@@ -8,6 +8,7 @@ import {
     createCursoPersonaNota,
     getCursoPersonaNota,
     getCursoPersonaNota_Profesor,
+    modPersona
 } from './database.js'
 
 import jwt from 'jsonwebtoken'
@@ -43,6 +44,20 @@ app.post(
         res.send(await createPersona(req.body))
     })
 )
+
+app.put(
+    '/personas',
+    tryCatch(async (req, res, next)=>{
+        await modPersona(req.body).then(data =>{
+            if(data){
+                res.send(data);
+            }else{
+                res.sendStatus(400);
+            }
+        })
+    })
+)
+
 // #endregion
 
 // #region CURSO
